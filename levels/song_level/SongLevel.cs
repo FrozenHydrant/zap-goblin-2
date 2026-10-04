@@ -41,6 +41,8 @@ public partial class SongLevel : Node2D
 	Healthbar healthbar;
 	[Export]
 	ScoreDisplay scoreDisplay;
+	[Export]
+	PackedScene failScene;
 	static GameState State => GameState.Instance;
 	const float maxHp = 100;
 	Node2D notes;
@@ -51,9 +53,11 @@ public partial class SongLevel : Node2D
 	// Called when scenetree 1st time
 	public override void _Ready()
 	{
-		healthbar.UpdateLivesDisplay(lives);
 		notes = GetNode<Node2D>("Notes");
+
 		ParseAndApplyUpgrades();
+		healthbar.UpdateLivesDisplay(lives);
+
 	}
 
 	public void ParseAndApplyUpgrades()
@@ -112,7 +116,7 @@ public partial class SongLevel : Node2D
 		{
 			myNote.powerNote = true;
 			myNote.mySprite.Texture = myNote.noteYellow;
-		} 
+		}
 		myNote.leftSide = true;
 		myNote.Position = new Vector2(700, -100);
 		notes.AddChild(myNote);
@@ -187,11 +191,15 @@ public partial class SongLevel : Node2D
 		}
 		if (lives < 1)
 		{
-			// TODO
+			GoToFailure();
 		}
 		healthbar.UpdateHealthDisplay(hp / maxHp, lives);
 	}
 
+	public void GoToFailure()
+	{
+		GetTree().ChangeSceneToPacked(failScene);
+	}
 	public void UpdateScore(bool isLeft, int change)
 	{
 		if (isLeft)

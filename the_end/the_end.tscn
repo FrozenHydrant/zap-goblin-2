@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ux8yjun4q4rp"]
+
+[ext_resource type="Script" uid="uid://jo2bbhmlrtso" path="res://the_end/Button.cs" id="1_3dpv6"]
+
+[node name="TheEnd" type="Node2D" unique_id=2003996647]
+
+[node name="EndLabel" type="RichTextLabel" parent="." unique_id=1201925328]
+texture_filter = 1
+offset_left = 700.0
+offset_top = 200.0
+offset_right = 900.0
+offset_bottom = 400.0
+scale = Vector2(5, 5)
+text = "You Failed..."
+
+[node name="Button" type="Button" parent="." unique_id=1547989715]
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 1050.0
+offset_bottom = 720.0
+text = "Try Again"
+script = ExtResource("1_3dpv6")

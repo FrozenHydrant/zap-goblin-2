@@ -20,4 +20,5 @@ public partial class GameState : Node
 
 	public bool Has(string id) => _unlocked.Contains(id);
 	public void Unlock(string id) => _unlocked.Add(id);
+
 }
