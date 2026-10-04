@@ -9,8 +9,7 @@ using System.Linq;
 // Picking the other player's character swaps them.
 public partial class SkillTree : Control
 {
-	private const string GameScene = "res://skill_tree.tscn";   // <- change to your game scene
-	
+	private const string GameScene = "res://levels/song_level/song_level.tscn";
 	public const string CharArtDir = "res://characters/";
 
 	private static readonly Color Teal    = Color.FromHtml("#31AAA9");
@@ -71,6 +70,7 @@ public partial class SkillTree : Control
 	public override void _Ready()
 	{
 		TextureFilter = TextureFilterEnum.Nearest;   // crisp pixel art (children inherit)
+		Scale = Vector2.One * (1080f / 648f);         // layout was designed at 1152x648; project is 1920x1080
 		
 		_pointsLabel = MakeLabel(new Vector2(20, 16));
 		_p1Label     = MakeLabel(new Vector2(20, 40));

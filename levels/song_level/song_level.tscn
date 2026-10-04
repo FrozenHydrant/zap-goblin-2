@@ -59,16 +59,18 @@ rightPlayerTexture = NodePath("P2Character")
 
 [node name="P1Character" type="TextureRect" parent="Characters" unique_id=722081896]
 texture_filter = 1
-offset_left = -500.0
-offset_right = -372.0
-offset_bottom = 256.0
+offset_left = -704.0
+offset_top = -315.0
+offset_right = -576.0
+offset_bottom = -59.0
 expand_mode = 1
 stretch_mode = 5
 
 [node name="P2Character" type="TextureRect" parent="Characters" unique_id=1023588733]
 texture_filter = 1
-offset_left = 500.0
-offset_right = 628.0
-offset_bottom = 256.0
+offset_left = 704.0
+offset_top = -315.0
+offset_right = 832.0
+offset_bottom = -59.0
 expand_mode = 1
 stretch_mode = 5

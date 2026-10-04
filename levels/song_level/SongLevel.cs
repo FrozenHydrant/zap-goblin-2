@@ -20,6 +20,10 @@ public partial class SongLevel : Node2D
 	int leftCombo = 0;
 	int rightCombo = 0;
 
+	//time related variables
+	private float timetracker = 0.0f;
+	private const float trackerinterval = 5.0f;
+
 	// Don't mess with these
 	Random random = new();
 	[Export]
@@ -194,6 +198,15 @@ public partial class SongLevel : Node2D
 	{	
 		// 
 		SpawnNewNotes((float) delta);
+	}
+
+	public override void _Speedup(double delta){
+		timetracker += (float)delta;
+		if (timetracker >= trackerinterval){
+
+			timetracker -= trackerinterval;
+		}
+
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
