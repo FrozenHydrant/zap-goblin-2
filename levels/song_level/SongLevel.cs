@@ -20,6 +20,9 @@ public partial class SongLevel : Node2D
 	float hp = 100;
 	float damage = 25;
 	int lives = 2;
+	int score = 0;
+	float leftComboStrength = 1/60f;
+	float rightComboStrength = 1/60f;
 
 	//time related variables
 	private float timetracker = 0.0f;
@@ -35,6 +38,8 @@ public partial class SongLevel : Node2D
 	ComboDisplay comboDisplay;
 	[Export]
 	Healthbar healthbar;
+	[Export]
+	ScoreDisplay scoreDisplay;
 	const float maxHp = 100;
 	Node2D notes;
 	public const int hitWindow = 260;
@@ -120,6 +125,17 @@ public partial class SongLevel : Node2D
 		healthbar.UpdateHealthDisplay(hp / maxHp, lives);
 	}
 
+	public void UpdateScore(bool isLeft, int change)
+	{
+		if (isLeft) {
+			score += (int) (change * (leftCombo * leftComboStrength));
+		} else
+		{
+			score += (int) (change * (rightCombo * rightComboStrength));
+		}
+		scoreDisplay.UpdateScoreDisplay(score);
+	}
+
 	public void HitNote(bool isLeft, Evaluations evaluation) {
 		switch (evaluation)
 		{
@@ -187,9 +203,7 @@ public partial class SongLevel : Node2D
 
 		if (closestNote != null)
 		{
-			closestNote.QueueFree();
-			int trueScore = (int) (hitWindow - closest);
-
+			// Do hit calcs
 			if (closest < hitWindow/4.0f)
 			{
 				HitNote(isLeft, Evaluations.Marvelous);
@@ -213,6 +227,11 @@ public partial class SongLevel : Node2D
 					HitNote(isLeft, Evaluations.VeryLate);
 				}
 			}
+
+			// Clean up the note
+			closestNote.QueueFree();
+			int trueScore = (int) (hitWindow - closest);
+			UpdateScore(isLeft, trueScore);
 		}
 
 	}

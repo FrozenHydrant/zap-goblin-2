@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 public partial class Healthbar : Node2D
 {
@@ -39,7 +38,7 @@ public partial class Healthbar : Node2D
 	{
 		base._Draw();
 
-		GD.Print(hpStartPos, " ", hpEndPos);
+		//GD.Print(hpStartPos, " ", hpEndPos);
 		DrawLine(hpStartPos, hpEndPos, Colors.Green, 15.0f);
 	}
 

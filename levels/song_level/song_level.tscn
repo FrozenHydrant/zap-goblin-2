@@ -8,13 +8,15 @@
 [ext_resource type="Script" uid="uid://bfyg8seo5ju2n" path="res://levels/song_level/Characters.cs" id="6_l7fcp"]
 [ext_resource type="Texture2D" uid="uid://fvjd3mjhcpk2" path="res://levels/song_level/hp_bar_3.png" id="7_a202w"]
 [ext_resource type="Script" uid="uid://d1plh4vn2vra1" path="res://levels/song_level/Healthbar.cs" id="7_kt36q"]
+[ext_resource type="Script" uid="uid://dmqmauqimf4d5" path="res://levels/song_level/ScoreDisplay.cs" id="9_0gcnw"]
 
-[node name="SongLevel" type="Node2D" unique_id=1933005146 node_paths=PackedStringArray("hitDisplay", "comboDisplay", "healthbar")]
+[node name="SongLevel" type="Node2D" unique_id=1933005146 node_paths=PackedStringArray("hitDisplay", "comboDisplay", "healthbar", "scoreDisplay")]
 script = ExtResource("1_x0wq4")
 notescene = ExtResource("2_17t14")
 hitDisplay = NodePath("HitDisplay")
 comboDisplay = NodePath("ComboDisplay")
 healthbar = NodePath("Healthbar")
+scoreDisplay = NodePath("ScoreDisplay")
 
 [node name="ScoreBar" type="Node2D" parent="." unique_id=111687410]
 z_index = 1
@@ -92,3 +94,13 @@ offset_bottom = 70.0
 [node name="Sprite2D" type="Sprite2D" parent="Healthbar" unique_id=2018811706]
 scale = Vector2(5, 5)
 texture = ExtResource("7_a202w")
+
+[node name="ScoreDisplay" type="Node2D" parent="." unique_id=1020330131 node_paths=PackedStringArray("scoreDisplayText")]
+position = Vector2(50, 50)
+script = ExtResource("9_0gcnw")
+scoreDisplayText = NodePath("ScoreDisplayText")
+
+[node name="ScoreDisplayText" type="RichTextLabel" parent="ScoreDisplay" unique_id=499386335]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
