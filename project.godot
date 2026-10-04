@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zap Goblin 2"
-run/main_scene="uid://b1d6bb7tepdk8"
+run/main_scene="uid://iydqhl331xf8"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Collections;
-using System.Xml.Resolvers;
 
 public partial class SongLevel : Node2D
 {
@@ -19,6 +17,9 @@ public partial class SongLevel : Node2D
 	double nextNoteRight = 0;
 	int leftCombo = 0;
 	int rightCombo = 0;
+	float hp = 100;
+	float damage = 25;
+	int lives = 2;
 
 	//time related variables
 	private float timetracker = 0.0f;
@@ -32,12 +33,18 @@ public partial class SongLevel : Node2D
 	HitDisplay hitDisplay;
 	[Export]
 	ComboDisplay comboDisplay;
+	[Export]
+	Healthbar healthbar;
+	const float maxHp = 100;
 	Node2D notes;
 	public const int hitWindow = 260;
+
+	public static Vector2 fallVec = new Vector2(0.0f, 800.0f);
 
 	// Called when scenetree 1st time
 	public override void _Ready()
 	{
+		healthbar.UpdateLivesDisplay(lives);
 		notes = GetNode<Node2D>("Notes");
 	}
 
@@ -98,6 +105,21 @@ public partial class SongLevel : Node2D
 		comboDisplay.UpdateComboDisplay(leftCombo, rightCombo);
 	}
 
+	public void UpdateHp(float damage)
+	{
+		hp -= damage;
+		if (hp <= 0)
+		{
+			lives -= 1;
+			hp = maxHp;
+		}
+		if (lives < 1)
+		{
+			// TODO
+		}
+		healthbar.UpdateHealthDisplay(hp / maxHp, lives);
+	}
+
 	public void HitNote(bool isLeft, Evaluations evaluation) {
 		switch (evaluation)
 		{
@@ -123,12 +145,14 @@ public partial class SongLevel : Node2D
 			{
 				hitDisplay.FlashText(isLeft, "Miserably Early");
 				UpdateCombo(isLeft, true);
+				UpdateHp(damage);
 				break;		
 			}
 			case Evaluations.VeryLate:
 			{
 				hitDisplay.FlashText(isLeft, "Miserably Late");
 				UpdateCombo(isLeft, true);
+				UpdateHp(damage);
 				break;		
 			}
 			default:
@@ -193,20 +217,31 @@ public partial class SongLevel : Node2D
 
 	}
 
+	public void ModifyFallSpeedMultiplicative(float multiplier)
+	{
+		fallVec *= multiplier;
+	}
+
+	public void ModifyFallSpeedAdditive(int amount)
+	{
+		fallVec.Y += amount;
+	}
+
+	public void Speedup(double delta){
+		timetracker += (float)delta;
+		if (timetracker >= trackerinterval){
+			ModifyFallSpeedAdditive(50);
+			timetracker -= trackerinterval;
+		}
+
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{	
 		// 
 		SpawnNewNotes((float) delta);
-	}
-
-	public override void _Speedup(double delta){
-		timetracker += (float)delta;
-		if (timetracker >= trackerinterval){
-
-			timetracker -= trackerinterval;
-		}
-
+		Speedup(delta);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

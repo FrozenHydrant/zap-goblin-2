@@ -4,17 +4,20 @@ using System;
 public partial class Note : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
+	SongLevel mySongLevel;
 	public bool leftSide = false;
 	int hitWindow;
-	[Export]
-	public Vector2 fallVec = new Vector2(0.0f, 800.0f);
 	// Hitbox is at bottom of note
 	const float spriteOffset = 135/2.0f;
 	int barLocation;
+
+	Vector2 myFallSpeed;
 	public override void _Ready()
 	{
 		hitWindow = SongLevel.hitWindow;
 		barLocation = ScoreBar.drawLoc;
+		mySongLevel = (SongLevel) GetNode("/root/SongLevel");
+		myFallSpeed = SongLevel.fallVec;
 	}
 	
 	public bool Targetable()
@@ -35,11 +38,13 @@ public partial class Note : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position += fallVec * (float) delta;
+		Position += myFallSpeed * (float) delta;
 
 		// Delete when outta the screen
 		if (Position.Y > 1180) {
+			mySongLevel.HitNote(leftSide, SongLevel.Evaluations.VeryLate);
 			QueueFree();
 		}
+
 	}
 }

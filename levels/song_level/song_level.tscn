@@ -6,12 +6,15 @@
 [ext_resource type="Script" uid="uid://b8ybmxnif705r" path="res://levels/song_level/HitDisplay.cs" id="4_17t14"]
 [ext_resource type="Script" uid="uid://x1sas15sv1xa" path="res://levels/song_level/ComboDisplay.cs" id="5_da63d"]
 [ext_resource type="Script" uid="uid://bfyg8seo5ju2n" path="res://levels/song_level/Characters.cs" id="6_l7fcp"]
+[ext_resource type="Texture2D" uid="uid://fvjd3mjhcpk2" path="res://levels/song_level/hp_bar_3.png" id="7_a202w"]
+[ext_resource type="Script" uid="uid://d1plh4vn2vra1" path="res://levels/song_level/Healthbar.cs" id="7_kt36q"]
 
-[node name="SongLevel" type="Node2D" unique_id=1933005146 node_paths=PackedStringArray("hitDisplay", "comboDisplay")]
+[node name="SongLevel" type="Node2D" unique_id=1933005146 node_paths=PackedStringArray("hitDisplay", "comboDisplay", "healthbar")]
 script = ExtResource("1_x0wq4")
 notescene = ExtResource("2_17t14")
 hitDisplay = NodePath("HitDisplay")
 comboDisplay = NodePath("ComboDisplay")
+healthbar = NodePath("Healthbar")
 
 [node name="ScoreBar" type="Node2D" parent="." unique_id=111687410]
 z_index = 1
@@ -74,3 +77,18 @@ offset_right = 832.0
 offset_bottom = -59.0
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Healthbar" type="Node2D" parent="." unique_id=509266450 node_paths=PackedStringArray("lifeCountLabel")]
+position = Vector2(1500, 50)
+script = ExtResource("7_kt36q")
+lifeCountLabel = NodePath("LifeCount")
+
+[node name="LifeCount" type="RichTextLabel" parent="Healthbar" unique_id=957351917]
+offset_left = 120.0
+offset_top = 30.0
+offset_right = 160.0
+offset_bottom = 70.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Healthbar" unique_id=2018811706]
+scale = Vector2(5, 5)
+texture = ExtResource("7_a202w")
