@@ -17,6 +17,7 @@ public partial class GameState : Node
 	private readonly HashSet<string> _unlocked = new() { "core", "stormy", "sparky" };
 	public readonly string[] skills = ["power", "life1", "combo", "freeze", "life2", "power2", "shield", "multi", "sync", "lenient"];
 	public override void _Ready() => Instance = this;
+	public int stage = 0;
 
 	public bool Has(string id) => _unlocked.Contains(id);
 	public void Unlock(string id) => _unlocked.Add(id);

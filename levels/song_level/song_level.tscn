@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b4y5qum0053xl" path="res://levels/song_level/ScoreBar.cs" id="2_baf0p"]
 [ext_resource type="PackedScene" uid="uid://ux8yjun4q4rp" path="res://the_end/the_end.tscn" id="3_2w6wc"]
 [ext_resource type="Script" uid="uid://b8ybmxnif705r" path="res://levels/song_level/HitDisplay.cs" id="4_17t14"]
+[ext_resource type="PackedScene" uid="uid://ddn0h5mcysxtu" path="res://the_end/good_end.tscn" id="4_gmo3c"]
 [ext_resource type="Script" uid="uid://x1sas15sv1xa" path="res://levels/song_level/ComboDisplay.cs" id="5_da63d"]
 [ext_resource type="Script" uid="uid://bfyg8seo5ju2n" path="res://levels/song_level/Characters.cs" id="6_l7fcp"]
 [ext_resource type="Texture2D" uid="uid://fvjd3mjhcpk2" path="res://levels/song_level/hp_bar_3.png" id="7_a202w"]
@@ -19,6 +20,7 @@ comboDisplay = NodePath("ComboDisplay")
 healthbar = NodePath("Healthbar")
 scoreDisplay = NodePath("ScoreDisplay")
 failScene = ExtResource("3_2w6wc")
+succeedScene = ExtResource("4_gmo3c")
 
 [node name="ScoreBar" type="Node2D" parent="." unique_id=111687410]
 z_index = 1
@@ -97,12 +99,18 @@ offset_bottom = 70.0
 scale = Vector2(5, 5)
 texture = ExtResource("7_a202w")
 
-[node name="ScoreDisplay" type="Node2D" parent="." unique_id=1020330131 node_paths=PackedStringArray("scoreDisplayText")]
+[node name="ScoreDisplay" type="Node2D" parent="." unique_id=1020330131 node_paths=PackedStringArray("scoreDisplayText", "targetScoreDisplayText")]
 position = Vector2(50, 50)
 script = ExtResource("9_0gcnw")
 scoreDisplayText = NodePath("ScoreDisplayText")
+targetScoreDisplayText = NodePath("TargetScoreDisplayText")
 
 [node name="ScoreDisplayText" type="RichTextLabel" parent="ScoreDisplay" unique_id=499386335]
 offset_right = 100.0
 offset_bottom = 100.0
 scale = Vector2(3, 3)
+
+[node name="TargetScoreDisplayText" type="RichTextLabel" parent="ScoreDisplay" unique_id=326183840]
+offset_top = 60.0
+offset_right = 300.0
+offset_bottom = 100.0

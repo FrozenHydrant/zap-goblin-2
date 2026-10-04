@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ddn0h5mcysxtu"]
+
+[ext_resource type="Script" uid="uid://sixk4y0pkuw6" path="res://the_end/GoodEndButton.cs" id="1_u1p1s"]
+[ext_resource type="PackedScene" uid="uid://iydqhl331xf8" path="res://skill_tree.tscn" id="2_u48aw"]
+
+[node name="GoodEnd" type="Node2D" unique_id=1823100930]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=62308775]
+offset_left = 700.0
+offset_top = 200.0
+offset_right = 900.0
+offset_bottom = 400.0
+scale = Vector2(3, 3)
+text = "You Beat the Level!"
+
+[node name="Button" type="Button" parent="." unique_id=1649956600]
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 1000.0
+offset_bottom = 720.0
+text = "Continue"
+script = ExtResource("1_u1p1s")
+skillTree = ExtResource("2_u48aw")

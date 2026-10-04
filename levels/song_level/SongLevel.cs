@@ -21,6 +21,7 @@ public partial class SongLevel : Node2D
 	float damage = 25;
 	int lives = 2;
 	int score = 0;
+	int targetScore = 5000;
 	float leftComboStrength = 1 / 60f;
 	float rightComboStrength = 1 / 60f;
 	float powerNoteChance = 0.0f;
@@ -43,10 +44,13 @@ public partial class SongLevel : Node2D
 	ScoreDisplay scoreDisplay;
 	[Export]
 	PackedScene failScene;
+	[Export]
+	PackedScene succeedScene;
 	static GameState State => GameState.Instance;
 	const float maxHp = 100;
 	Node2D notes;
 	public const int hitWindow = 260;
+	const int originalTargetScore = 5000;
 
 	public static Vector2 fallVec = new Vector2(0.0f, 800.0f);
 
@@ -57,6 +61,9 @@ public partial class SongLevel : Node2D
 
 		ParseAndApplyUpgrades();
 		healthbar.UpdateLivesDisplay(lives);
+
+		targetScore = (int) (originalTargetScore * Mathf.Pow(1.1, State.stage));
+		scoreDisplay.UpdateTargetScoreDisplay(targetScore);
 
 	}
 
@@ -200,15 +207,34 @@ public partial class SongLevel : Node2D
 	{
 		GetTree().ChangeSceneToPacked(failScene);
 	}
+
+	public void GoToSuccess()
+	{
+		State.SkillPoints += 2;
+		State.stage += 1;
+		GetTree().ChangeSceneToPacked(succeedScene);
+	}
 	public void UpdateScore(bool isLeft, int change)
 	{
 		if (isLeft)
 		{
 			score += (int)(change * (leftCombo * leftComboStrength));
+			if (leftCombo >= 100 && State.Has("multi"))
+			{
+				score *= 2;
+			}
 		}
 		else
 		{
 			score += (int)(change * (rightCombo * rightComboStrength));
+			if (rightCombo >= 100 && State.Has("multi"))
+			{
+				score *= 2;
+			}
+		}
+		if (score >= targetScore)
+		{
+			GoToSuccess();
 		}
 		scoreDisplay.UpdateScoreDisplay(score);
 	}
