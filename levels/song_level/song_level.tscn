@@ -101,6 +101,6 @@ script = ExtResource("9_0gcnw")
 scoreDisplayText = NodePath("ScoreDisplayText")
 
 [node name="ScoreDisplayText" type="RichTextLabel" parent="ScoreDisplay" unique_id=499386335]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 100.0
+offset_bottom = 100.0
 scale = Vector2(3, 3)

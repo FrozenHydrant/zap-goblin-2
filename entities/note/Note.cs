@@ -6,10 +6,17 @@ public partial class Note : Node2D
 	// Called when the node enters the scene tree for the first time.
 	SongLevel mySongLevel;
 	public bool leftSide = false;
+	public bool powerNote = false;
 	int hitWindow;
 	// Hitbox is at bottom of note
 	const float spriteOffset = 135/2.0f;
 	int barLocation;
+
+	[Export]
+	public Texture2D noteYellow; 
+
+	[Export]
+	public Sprite2D mySprite;
 
 	Vector2 myFallSpeed;
 	public override void _Ready()

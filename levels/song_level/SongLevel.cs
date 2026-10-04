@@ -9,7 +9,7 @@ public partial class SongLevel : Node2D
 		VeryEarly,
 		Marvelous,
 		Late,
-		Early 
+		Early
 	}
 
 	//Some variables
@@ -21,8 +21,9 @@ public partial class SongLevel : Node2D
 	float damage = 25;
 	int lives = 2;
 	int score = 0;
-	float leftComboStrength = 1/60f;
-	float rightComboStrength = 1/60f;
+	float leftComboStrength = 1 / 60f;
+	float rightComboStrength = 1 / 60f;
+	float powerNoteChance = 0.0f;
 
 	//time related variables
 	private float timetracker = 0.0f;
@@ -40,6 +41,7 @@ public partial class SongLevel : Node2D
 	Healthbar healthbar;
 	[Export]
 	ScoreDisplay scoreDisplay;
+	static GameState State => GameState.Instance;
 	const float maxHp = 100;
 	Node2D notes;
 	public const int hitWindow = 260;
@@ -51,11 +53,66 @@ public partial class SongLevel : Node2D
 	{
 		healthbar.UpdateLivesDisplay(lives);
 		notes = GetNode<Node2D>("Notes");
+		ParseAndApplyUpgrades();
+	}
+
+	public void ParseAndApplyUpgrades()
+	{
+		foreach (string upgrade in State.skills)
+		{
+			if (State.Has(upgrade))
+			{
+				ApplyUpgrade(upgrade);
+			}
+		}
+	}
+
+	public void ApplyUpgrade(string upgrade)
+	{
+		switch (upgrade)
+		{
+			case "life1":
+				{
+					lives += 1;
+					break;
+				}
+			case "combo":
+				{
+					leftComboStrength *= 1.2f;
+					rightComboStrength *= 1.2f;
+					break;
+				}
+			case "life2":
+				{
+					lives += 1;
+					break;
+				}
+			case "power":
+				{
+					powerNoteChance = 0.05f;
+					break;
+				}
+			case "power2":
+				{
+					powerNoteChance = 0.1f;
+					break;
+				}
+			default:
+				{
+					break;
+				}
+		}
 	}
 
 	public void SpawnNoteLeft()
 	{
-		Note myNote = (Note) notescene.Instantiate();
+		Note myNote = (Note)notescene.Instantiate();
+		double myDouble = random.NextDouble();
+		if (myDouble <= powerNoteChance)
+		{
+			myNote.powerNote = true;
+			myNote.mySprite.Texture = myNote.noteYellow;
+		} 
 		myNote.leftSide = true;
 		myNote.Position = new Vector2(700, -100);
 		notes.AddChild(myNote);
@@ -63,7 +120,13 @@ public partial class SongLevel : Node2D
 
 	public void SpawnNoteRight()
 	{
-		Note myNote = (Note) notescene.Instantiate();
+		Note myNote = (Note)notescene.Instantiate();
+		double myDouble = random.NextDouble();
+		if (myDouble <= powerNoteChance)
+		{
+			myNote.powerNote = true;
+			myNote.mySprite.Texture = myNote.noteYellow;
+		}
 		myNote.leftSide = false;
 		myNote.Position = new Vector2(1100, -100);
 		notes.AddChild(myNote);
@@ -72,17 +135,18 @@ public partial class SongLevel : Node2D
 	public void SpawnNewNotes(double delta)
 	{
 		// Note Spawning
-		nextNoteLeft -= delta;	
-		if (nextNoteLeft <= 0) {
+		nextNoteLeft -= delta;
+		if (nextNoteLeft <= 0)
+		{
 			SpawnNoteLeft();
-			nextNoteLeft = random.Next(50, 100)/100.0f;
+			nextNoteLeft = random.Next(50, 100) / 100.0f;
 			// GD.Print(nextNoteLeft + " delay");
 		}
 		nextNoteRight -= delta;
 		if (nextNoteRight <= 0)
 		{
 			SpawnNoteRight();
-			nextNoteRight = random.Next(50, 100)/100.0f;
+			nextNoteRight = random.Next(50, 100) / 100.0f;
 		}
 	}
 
@@ -93,16 +157,19 @@ public partial class SongLevel : Node2D
 			if (reset)
 			{
 				leftCombo = 0;
-			} else
+			}
+			else
 			{
 				leftCombo += 1;
 			}
-		} else
+		}
+		else
 		{
 			if (reset)
 			{
 				rightCombo = 0;
-			} else
+			}
+			else
 			{
 				rightCombo += 1;
 			}
@@ -127,54 +194,57 @@ public partial class SongLevel : Node2D
 
 	public void UpdateScore(bool isLeft, int change)
 	{
-		if (isLeft) {
-			score += (int) (change * (leftCombo * leftComboStrength));
-		} else
+		if (isLeft)
 		{
-			score += (int) (change * (rightCombo * rightComboStrength));
+			score += (int)(change * (leftCombo * leftComboStrength));
+		}
+		else
+		{
+			score += (int)(change * (rightCombo * rightComboStrength));
 		}
 		scoreDisplay.UpdateScoreDisplay(score);
 	}
 
-	public void HitNote(bool isLeft, Evaluations evaluation) {
+	public void HitNote(bool isLeft, Evaluations evaluation)
+	{
 		switch (evaluation)
 		{
 			case Evaluations.Marvelous:
-			{
-				hitDisplay.FlashText(isLeft, "Marvelous");
-				UpdateCombo(isLeft, false);
-				break;
-			} 
+				{
+					hitDisplay.FlashText(isLeft, "Marvelous");
+					UpdateCombo(isLeft, false);
+					break;
+				}
 			case Evaluations.Late:
-			{
-				hitDisplay.FlashText(isLeft, "Late");
-				UpdateCombo(isLeft, false);	
-				break;	
-			}
+				{
+					hitDisplay.FlashText(isLeft, "Late");
+					UpdateCombo(isLeft, false);
+					break;
+				}
 			case Evaluations.Early:
-			{
-				hitDisplay.FlashText(isLeft, "Early");
-				UpdateCombo(isLeft, false);
-				break;
-			}
+				{
+					hitDisplay.FlashText(isLeft, "Early");
+					UpdateCombo(isLeft, false);
+					break;
+				}
 			case Evaluations.VeryEarly:
-			{
-				hitDisplay.FlashText(isLeft, "Miserably Early");
-				UpdateCombo(isLeft, true);
-				UpdateHp(damage);
-				break;		
-			}
+				{
+					hitDisplay.FlashText(isLeft, "Miserably Early");
+					UpdateCombo(isLeft, true);
+					UpdateHp(damage);
+					break;
+				}
 			case Evaluations.VeryLate:
-			{
-				hitDisplay.FlashText(isLeft, "Miserably Late");
-				UpdateCombo(isLeft, true);
-				UpdateHp(damage);
-				break;		
-			}
+				{
+					hitDisplay.FlashText(isLeft, "Miserably Late");
+					UpdateCombo(isLeft, true);
+					UpdateHp(damage);
+					break;
+				}
 			default:
-			{
-				break;
-			}
+				{
+					break;
+				}
 		}
 	}
 
@@ -186,7 +256,8 @@ public partial class SongLevel : Node2D
 		Note closestNote = null;
 		foreach (Note note in notes.GetChildren())
 		{
-			if (note.leftSide == isLeft && note.Targetable()) {
+			if (note.leftSide == isLeft && note.Targetable())
+			{
 				float amount = note.GetDistance();
 				float score = Mathf.Abs(amount);
 
@@ -204,25 +275,28 @@ public partial class SongLevel : Node2D
 		if (closestNote != null)
 		{
 			// Do hit calcs
-			if (closest < hitWindow/4.0f)
+			if (closest < hitWindow / 4.0f)
 			{
 				HitNote(isLeft, Evaluations.Marvelous);
-			}	
-			else if (closest < hitWindow/2.0f)
+			}
+			else if (closest < hitWindow / 2.0f)
 			{
 				if (direction == -1.0f)
 				{
 					HitNote(isLeft, Evaluations.Early);
-				} else
+				}
+				else
 				{
 					HitNote(isLeft, Evaluations.Late);
 				}
-			} else
+			}
+			else
 			{
 				if (direction == -1.0f)
 				{
 					HitNote(isLeft, Evaluations.VeryEarly);
-				} else
+				}
+				else
 				{
 					HitNote(isLeft, Evaluations.VeryLate);
 				}
@@ -230,7 +304,11 @@ public partial class SongLevel : Node2D
 
 			// Clean up the note
 			closestNote.QueueFree();
-			int trueScore = (int) (hitWindow - closest);
+			int trueScore = (int)(hitWindow - closest);
+			if (closestNote.powerNote)
+			{
+				trueScore *= 2;
+			}
 			UpdateScore(isLeft, trueScore);
 		}
 
@@ -246,9 +324,11 @@ public partial class SongLevel : Node2D
 		fallVec.Y += amount;
 	}
 
-	public void Speedup(double delta){
+	public void Speedup(double delta)
+	{
 		timetracker += (float)delta;
-		if (timetracker >= trackerinterval){
+		if (timetracker >= trackerinterval)
+		{
 			ModifyFallSpeedAdditive(50);
 			timetracker -= trackerinterval;
 		}
@@ -257,9 +337,9 @@ public partial class SongLevel : Node2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{	
+	{
 		// 
-		SpawnNewNotes((float) delta);
+		SpawnNewNotes((float)delta);
 		Speedup(delta);
 	}
 

@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 // Autoload this as "GameState" (Project Settings -> Globals -> Autoload).
 // From C#:       GameState.Instance.Has("life1"), GameState.Instance.P1Character
@@ -14,7 +15,7 @@ public partial class GameState : Node
 
 	// Stormy and Sparky start unlocked.
 	private readonly HashSet<string> _unlocked = new() { "core", "stormy", "sparky" };
-
+	public readonly string[] skills = ["power", "life1", "combo", "freeze", "life2", "power2", "shield", "multi", "sync", "lenient"];
 	public override void _Ready() => Instance = this;
 
 	public bool Has(string id) => _unlocked.Contains(id);

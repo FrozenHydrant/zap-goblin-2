@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://2q0ery8mrpel" path="res://entities/note/Note.cs" id="1_co070"]
 [ext_resource type="Texture2D" uid="uid://c4ndqx7oiaw1" path="res://entities/note/note_blue.png" id="2_hfkhw"]
+[ext_resource type="Texture2D" uid="uid://benellchmvl87" path="res://entities/note/note_yellow.png" id="2_qelpb"]
 
-[node name="Note" type="Node2D" unique_id=1772604295]
+[node name="Note" type="Node2D" unique_id=1772604295 node_paths=PackedStringArray("mySprite")]
 script = ExtResource("1_co070")
+noteYellow = ExtResource("2_qelpb")
+mySprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1115394645]
 texture = ExtResource("2_hfkhw")
