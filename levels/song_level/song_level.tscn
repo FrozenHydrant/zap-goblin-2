@@ -35,13 +35,16 @@ hitDisplayLeft = NodePath("HitDisplayTextLeft")
 hitDisplayRight = NodePath("HitDisplayTextRight")
 
 [node name="HitDisplayTextLeft" type="RichTextLabel" parent="HitDisplay" unique_id=1402724630]
-offset_left = -200.0
+offset_left = -240.0
+offset_right = -40.0
 offset_bottom = 200.0
+scale = Vector2(2, 2)
 
 [node name="HitDisplayTextRight" type="RichTextLabel" parent="HitDisplay" unique_id=1017353192]
-offset_left = 200.0
-offset_right = 400.0
+offset_left = 160.0
+offset_right = 360.0
 offset_bottom = 200.0
+scale = Vector2(2, 2)
 offset_transform_position = Vector2(200, 0)
 
 [node name="ComboDisplay" type="Node2D" parent="." unique_id=391793861 node_paths=PackedStringArray("leftComboLabel", "rightComboLabel")]
@@ -51,13 +54,13 @@ leftComboLabel = NodePath("ComboDisplayTextLeft")
 rightComboLabel = NodePath("ComboDisplayTextRight")
 
 [node name="ComboDisplayTextLeft" type="RichTextLabel" parent="ComboDisplay" unique_id=412194646]
-offset_left = -300.0
-offset_right = -100.0
+offset_left = -350.0
+offset_right = -150.0
 offset_bottom = 200.0
 
 [node name="ComboDisplayTextRight" type="RichTextLabel" parent="ComboDisplay" unique_id=2110059981]
-offset_left = 300.0
-offset_right = 500.0
+offset_left = 350.0
+offset_right = 550.0
 offset_bottom = 200.0
 
 [node name="Characters" type="Node2D" parent="." unique_id=295109132 node_paths=PackedStringArray("leftPlayerTexture", "rightPlayerTexture")]

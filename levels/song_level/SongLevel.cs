@@ -65,6 +65,7 @@ public partial class SongLevel : Node2D
 		targetScore = (int) (originalTargetScore * Mathf.Pow(1.1, State.stage));
 		scoreDisplay.UpdateTargetScoreDisplay(targetScore);
 
+		fallVec = new Vector2(0.0f, 800.0f + 75.0f * State.stage);
 	}
 
 	public void ParseAndApplyUpgrades()
