@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://u7sc3j28tjjl"
-path="res://.godot/imported/sparky.png-557c4f5d598f0d5305f90522682c64c7.ctex"
+path="res://.godot/imported/sparky.png-11f4be4bfe0ae40e9f7cf605589deea7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/sparky.png"
-dest_files=["res://.godot/imported/sparky.png-557c4f5d598f0d5305f90522682c64c7.ctex"]
+source_file="res://characters/sparky.png"
+dest_files=["res://.godot/imported/sparky.png-11f4be4bfe0ae40e9f7cf605589deea7.ctex"]
 
 [params]
 

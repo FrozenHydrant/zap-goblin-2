@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb115212d2spe"
-path="res://.godot/imported/stacky.png-e24fdf02e75836f9da3ab116462e5579.ctex"
+path="res://.godot/imported/stacky.png-7a1b3e0ea11db8ee493683106786f45c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/stacky.png"
-dest_files=["res://.godot/imported/stacky.png-e24fdf02e75836f9da3ab116462e5579.ctex"]
+source_file="res://characters/stacky.png"
+dest_files=["res://.godot/imported/stacky.png-7a1b3e0ea11db8ee493683106786f45c.ctex"]
 
 [params]
 

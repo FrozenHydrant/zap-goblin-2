@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxrjsqhr85s4k"
-path="res://.godot/imported/sleepy.png-7450a219fe7212b09ef5f704f54c29c9.ctex"
+path="res://.godot/imported/sleepy.png-b2cbfd29ae5d6bbe517e6eaad29f283b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/sleepy.png"
-dest_files=["res://.godot/imported/sleepy.png-7450a219fe7212b09ef5f704f54c29c9.ctex"]
+source_file="res://characters/sleepy.png"
+dest_files=["res://.godot/imported/sleepy.png-b2cbfd29ae5d6bbe517e6eaad29f283b.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vyve4sdkxna2"
-path="res://.godot/imported/oswald.png-32bc7a4f2ab7d7f19def800de7198f7c.ctex"
+path="res://.godot/imported/oswald.png-67a2764d2b864e7576c0f668dfc8a8b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/oswald.png"
-dest_files=["res://.godot/imported/oswald.png-32bc7a4f2ab7d7f19def800de7198f7c.ctex"]
+source_file="res://characters/oswald.png"
+dest_files=["res://.godot/imported/oswald.png-67a2764d2b864e7576c0f668dfc8a8b1.ctex"]
 
 [params]
 

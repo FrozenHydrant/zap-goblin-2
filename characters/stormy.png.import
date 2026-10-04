@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bc0skskukrbxi"
-path="res://.godot/imported/stormy.png-a1996f2cbea9f041a6bc3b3f3540b566.ctex"
+path="res://.godot/imported/stormy.png-9c95f455082c4fe6a0ecad3d2de8608a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/stormy.png"
-dest_files=["res://.godot/imported/stormy.png-a1996f2cbea9f041a6bc3b3f3540b566.ctex"]
+source_file="res://characters/stormy.png"
+dest_files=["res://.godot/imported/stormy.png-9c95f455082c4fe6a0ecad3d2de8608a.ctex"]
 
 [params]
 
