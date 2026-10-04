@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c2urm61b4rpbb"]
+
+[ext_resource type="Script" uid="uid://djfgtms2mpkhr" path="res://levels/SongLevel.cs" id="1_dppdh"]
+
+[node name="SongLevel" type="Node2D" unique_id=1933005146]
+script = ExtResource("1_dppdh")
