@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://c2urm61b4rpbb"]
 
 [ext_resource type="Script" uid="uid://djfgtms2mpkhr" path="res://levels/SongLevel.cs" id="1_dppdh"]
+[ext_resource type="Script" uid="uid://b4y5qum0053xl" path="res://levels/ScoreBar.cs" id="2_06x8o"]
 
 [node name="SongLevel" type="Node2D" unique_id=1933005146]
 script = ExtResource("1_dppdh")
+
+[node name="ScoreBar" type="Node2D" parent="." unique_id=111687410]
+z_index = 1
+script = ExtResource("2_06x8o")
+
+[node name="Notes" type="Node2D" parent="." unique_id=780779928]
