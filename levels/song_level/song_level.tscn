@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b4y5qum0053xl" path="res://levels/song_level/ScoreBar.cs" id="2_baf0p"]
 [ext_resource type="Script" uid="uid://b8ybmxnif705r" path="res://levels/song_level/HitDisplay.cs" id="4_17t14"]
 [ext_resource type="Script" uid="uid://x1sas15sv1xa" path="res://levels/song_level/ComboDisplay.cs" id="5_da63d"]
+[ext_resource type="Script" uid="uid://bfyg8seo5ju2n" path="res://levels/song_level/Characters.cs" id="6_l7fcp"]
 
 [node name="SongLevel" type="Node2D" unique_id=1933005146 node_paths=PackedStringArray("hitDisplay", "comboDisplay")]
 script = ExtResource("1_x0wq4")
@@ -50,23 +51,24 @@ offset_left = 300.0
 offset_right = 500.0
 offset_bottom = 200.0
 
-[node name="Characters" type="Node2D" parent="." unique_id=295109132]
-position = Vector2(1200, 900)
+[node name="Characters" type="Node2D" parent="." unique_id=295109132 node_paths=PackedStringArray("leftPlayerTexture", "rightPlayerTexture")]
+position = Vector2(900, 800)
+script = ExtResource("6_l7fcp")
+leftPlayerTexture = NodePath("P1Character")
+rightPlayerTexture = NodePath("P2Character")
 
 [node name="P1Character" type="TextureRect" parent="Characters" unique_id=722081896]
 texture_filter = 1
-offset_left = 75.0
-offset_top = 266.0
-offset_right = 203.0
-offset_bottom = 522.0
+offset_left = -500.0
+offset_right = -372.0
+offset_bottom = 256.0
 expand_mode = 1
 stretch_mode = 5
 
 [node name="P2Character" type="TextureRect" parent="Characters" unique_id=1023588733]
 texture_filter = 1
-offset_left = 1039.0
-offset_top = 236.0
-offset_right = 1167.0
-offset_bottom = 492.0
+offset_left = 500.0
+offset_right = 628.0
+offset_bottom = 256.0
 expand_mode = 1
 stretch_mode = 5
