@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b1d6bb7tepdk8"]
+
+[ext_resource type="Script" uid="uid://bp5kc0518os1r" path="res://SkillTree.cs" id="1_217a5"]
+
+[node name="ControlNode" type="Control" unique_id=1213789118]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_217a5")
+
+[node name="P1Character" type="TextureRect" parent="." unique_id=814579861]
+texture_filter = 1
+layout_mode = 0
+offset_left = 75.0
+offset_top = 266.0
+offset_right = 203.0
+offset_bottom = 522.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="P2Character" type="TextureRect" parent="." unique_id=519810100]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1039.0
+offset_top = 236.0
+offset_right = 1167.0
+offset_bottom = 492.0
+expand_mode = 1
+stretch_mode = 5

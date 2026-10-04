@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skilltree", "Skilltree.csproj", "{D69E247F-31E1-45FB-AC8D-27B7CE86D051}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{D69E247F-31E1-45FB-AC8D-27B7CE86D051}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
