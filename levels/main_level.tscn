@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dhhswkl0wnjl5"]
+[gd_scene format=3 uid="uid://dpa8f7ows02sf"]
 
-[ext_resource type="Script" uid="uid://b2a8j1eo6os68" path="res://levels/MainLevel.cs" id="1_ilwad"]
+[ext_resource type="Script" path="res://levels/MainLevel.cs" id="1_ilwad"]
 
 [node name="MainLevel" type="Node2D" unique_id=1962412168]
 script = ExtResource("1_ilwad")

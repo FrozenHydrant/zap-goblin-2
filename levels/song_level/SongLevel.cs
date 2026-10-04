@@ -17,13 +17,17 @@ public partial class SongLevel : Node2D
 	//Some variables
 	double nextNoteLeft = 0;
 	double nextNoteRight = 0;
+	int leftCombo = 0;
+	int rightCombo = 0;
 
 	// Don't mess with these
-	Random random = new Random();
+	Random random = new();
 	[Export]
 	PackedScene notescene;
 	[Export]
 	HitDisplay hitDisplay;
+	[Export]
+	ComboDisplay comboDisplay;
 	Node2D notes;
 	public const int hitWindow = 260;
 
@@ -66,32 +70,61 @@ public partial class SongLevel : Node2D
 		}
 	}
 
-	public void HitNoteDisplay(bool isLeft, Evaluations evaluation) {
+	public void UpdateCombo(bool isLeft, bool reset)
+	{
+		if (isLeft)
+		{
+			if (reset)
+			{
+				leftCombo = 0;
+			} else
+			{
+				leftCombo += 1;
+			}
+		} else
+		{
+			if (reset)
+			{
+				rightCombo = 0;
+			} else
+			{
+				rightCombo += 1;
+			}
+		}
+		comboDisplay.UpdateComboDisplay(leftCombo, rightCombo);
+	}
+
+	public void HitNote(bool isLeft, Evaluations evaluation) {
 		switch (evaluation)
 		{
 			case Evaluations.Marvelous:
 			{
 				hitDisplay.FlashText(isLeft, "Marvelous");
+				UpdateCombo(isLeft, false);
 				break;
 			} 
 			case Evaluations.Late:
 			{
-				hitDisplay.FlashText(isLeft, "Late");	
+				hitDisplay.FlashText(isLeft, "Late");
+				UpdateCombo(isLeft, false);	
 				break;	
 			}
 			case Evaluations.Early:
 			{
 				hitDisplay.FlashText(isLeft, "Early");
+				UpdateCombo(isLeft, false);
 				break;
 			}
 			case Evaluations.VeryEarly:
 			{
 				hitDisplay.FlashText(isLeft, "Miserably Early");
+				UpdateCombo(isLeft, true);
 				break;		
 			}
 			case Evaluations.VeryLate:
 			{
 				hitDisplay.FlashText(isLeft, "Miserably Late");
+				UpdateCombo(isLeft, true);
 				break;		
 			}
 			default:
@@ -131,25 +164,25 @@ public partial class SongLevel : Node2D
 
 			if (closest < hitWindow/4.0f)
 			{
-				HitNoteDisplay(isLeft, Evaluations.Marvelous);
+				HitNote(isLeft, Evaluations.Marvelous);
 			}	
 			else if (closest < hitWindow/2.0f)
 			{
 				if (direction == -1.0f)
 				{
-					HitNoteDisplay(isLeft, Evaluations.Early);
+					HitNote(isLeft, Evaluations.Early);
 				} else
 				{
-					HitNoteDisplay(isLeft, Evaluations.Late);
+					HitNote(isLeft, Evaluations.Late);
 				}
 			} else
 			{
 				if (direction == -1.0f)
 				{
-					HitNoteDisplay(isLeft, Evaluations.VeryEarly);
+					HitNote(isLeft, Evaluations.VeryEarly);
 				} else
 				{
-					HitNoteDisplay(isLeft, Evaluations.VeryLate);
+					HitNote(isLeft, Evaluations.VeryLate);
 				}
 			}
 		}

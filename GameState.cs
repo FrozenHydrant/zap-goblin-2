@@ -6,17 +6,17 @@ using System.Collections.Generic;
 // From GDScript: GameState.Has("life1"), GameState.P1Character / GameState.P2Character, GameState.SkillPoints += 2
 public partial class GameState : Node
 {
-    public static GameState Instance { get; private set; }
+	public static GameState Instance { get; private set; }
 
-    [Export] public int SkillPoints { get; set; } = 5;               // starting points for testing
-    [Export] public string P1Character { get; set; } = "stormy";
-    [Export] public string P2Character { get; set; } = "sparky";
+	[Export] public int SkillPoints { get; set; } = 5;               // starting points for testing
+	[Export] public string P1Character { get; set; } = "stormy";
+	[Export] public string P2Character { get; set; } = "sparky";
 
-    // Stormy and Sparky start unlocked.
-    private readonly HashSet<string> _unlocked = new() { "core", "stormy", "sparky" };
+	// Stormy and Sparky start unlocked.
+	private readonly HashSet<string> _unlocked = new() { "core", "stormy", "sparky" };
 
-    public override void _Ready() => Instance = this;
+	public override void _Ready() => Instance = this;
 
-    public bool Has(string id) => _unlocked.Contains(id);
-    public void Unlock(string id) => _unlocked.Add(id);
+	public bool Has(string id) => _unlocked.Contains(id);
+	public void Unlock(string id) => _unlocked.Add(id);
 }

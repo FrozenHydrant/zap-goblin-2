@@ -10,7 +10,7 @@ using System.Linq;
 public partial class SkillTree : Control
 {
 	private const string GameScene = "res://skill_tree.tscn";   // <- change to your game scene
-	private const string CharArtDir = "res://art/characters/";
+	private const string CharArtDir = "res://characters/";
 
 	private static readonly Color Teal    = Color.FromHtml("#31AAA9");
 	private static readonly Color Cream   = Color.FromHtml("#F8E0A4");
